@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UCSD Multi-APK Batch Assessment (3 APKs)</title>
+  <style>
+:root {
+  --bg-main: #0b0f19;
+  --bg-card: #151e32;
+  --bg-card-sub: #1a253e;
+  --bg-code: #0d1322;
+  --border-color: #23324d;
+  --border-light: #2e4166;
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+  --accent-blue: #38bdf8;
+  --accent-green: #10b981;
+  --accent-amber: #f59e0b;
+  --accent-red: #ef4444;
+  --accent-purple: #a855f7;
+  --accent-indigo: #818cf8;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.5;
+  padding: 1.5rem;
+}
+.container { max-width: 1300px; margin: 0 auto; }
+
+/* Header Banner */
+header {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem 2rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.header-title h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.025em;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.header-title p {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+.header-meta {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.badge-success { background-color: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+.badge-danger { background-color: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+.badge-warning { background-color: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+.badge-info { background-color: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+.badge-purple { background-color: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
+.badge-secondary { background-color: rgba(100, 116, 139, 0.2); color: #cbd5e1; border: 1px solid var(--border-light); }
+
+/* Metrics Grid */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.metric-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+}
+.metric-title {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+.metric-val {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin-top: 0.25rem;
+  font-family: "SFMono-Regular", Consolas, monospace;
+}
+.metric-sub {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  margin-top: 0.25rem;
+}
+
+/* Cards & Sections */
+.card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+}
+.card-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Callouts / Banners */
+.alert {
+  padding: 1rem 1.25rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+}
+.alert-danger {
+  background-color: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
+}
+.alert-warning {
+  background-color: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  color: #fde68a;
+}
+.alert-info {
+  background-color: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: #bae6fd;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+th, td {
+  padding: 0.65rem 0.85rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+th {
+  background-color: var(--bg-card-sub);
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+tr:hover td {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+.mono {
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.8125rem;
+}
+.hash-pill {
+  background: var(--bg-code);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.8rem;
+  word-break: break-all;
+}
+
+/* Details and Lists */
+details {
+  background-color: var(--bg-card-sub);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+}
+summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--accent-blue);
+  padding: 0.25rem 0;
+}
+.details-content {
+  padding-top: 0.75rem;
+  font-size: 0.8125rem;
+}
+
+.chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+.chip {
+  background-color: var(--bg-card-sub);
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem;
+  font-family: "SFMono-Regular", Consolas, monospace;
+}
+
+/* Limitations */
+.limitations-list {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+.limitations-list li {
+  margin-bottom: 0.5rem;
+}
+
+footer {
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 0.75rem;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+</style>
+</head>
+<body>
+  <div class="container">
+    
+<header>
+  <div class="header-title">
+    <h1>UCSD Multi-APK Batch Assessment (3 APKs)</h1>
+    <p>Target: <span class="mono">/app/demo/inputs</span> &bull; Analyzed at 2026-10-14T14:10:49.261163+00:00 UTC</p>
+  </div>
+  <div class="header-meta">
+    <span class="badge badge-success">Status: success</span>
+    <span class="badge badge-info">Analyzer v0.1.0</span>
+    <span class="badge badge-purple">KB v1.0.0</span>
+  </div>
+</header>
+
+    
+<div class="metrics-grid">
+  <div class="metric-card">
+    <div class="metric-title">Total Targets</div>
+    <div class="metric-val">3</div>
+    <div class="metric-sub">3 passed, 0 failed</div>
+  </div>
+  <div class="metric-card">
+    <div class="metric-title">Strong Static Overlaps</div>
+    <div class="metric-val" style="color: #f87171;">1</div>
+    <div class="metric-sub">Dual verified GATT registrations</div>
+  </div>
+  <div class="metric-card">
+    <div class="metric-title">Candidate String Duplicates</div>
+    <div class="metric-val">0</div>
+    <div class="metric-sub">Without dual static registration</div>
+  </div>
+  <div class="metric-card">
+    <div class="metric-title">Sourced Standards (SIG)</div>
+    <div class="metric-val" style="color: #34d399;">1</div>
+    <div class="metric-sub">Bluetooth SIG specifications</div>
+  </div>
+  <div class="metric-card">
+    <div class="metric-title">Vendor / System Matches</div>
+    <div class="metric-val" style="color: #c084fc;">0</div>
+    <div class="metric-sub">Sourced OS/Hardware specs</div>
+  </div>
+</div>
+
+    
+<div class="card">
+  <div class="card-header">
+    <div class="card-title" style="color: #f87171;">Strong Duplicate Static Registrations (High-Confidence Overlap)</div>
+    <span class="badge badge-danger">1 Conflict(s)</span>
+  </div>
+  <div class="alert alert-warning" style="margin-bottom: 1rem;">
+    <strong>Interpretation Note:</strong> Two distinct APK packages contain verified intra-method Dalvik register data-flow associating the identical UUID with GATT service registration. This is a high-confidence static overlap and may warrant runtime/host-context validation. It does NOT constitute proof of runtime vulnerability or confirmed service squatting.
+  </div>
+  
+<div style="background-color: var(--bg-card-sub); border: 1px solid rgba(239, 68, 68, 0.4); border-radius: 6px; padding: 1rem; margin-bottom: 1rem;">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+    <span class="mono" style="font-size: 1.1rem; font-weight: 700; color: #f87171;">0000180d-0000-1000-8000-00805f9b34fb</span>
+    <span class="badge badge-danger">HIGH-CONFIDENCE STATIC OVERLAP</span>
+  </div>
+  <p style="font-size: 0.875rem; color: #fca5a5; margin-bottom: 0.75rem;">Two distinct APKs (org.example.service_a, org.example.service_b) contain strong static evidence (STRONG_STATIC_ASSOCIATION) associating the same UUID &#x27;0000180d-0000-1000-8000-00805f9b34fb&#x27; with GATT service registration via BluetoothGattServer.addService(). This is a high-confidence static overlap and may warrant runtime/host-context validation. [Knowledge Base Provenance: &#x27;Heart Rate Service&#x27; sourced from Bluetooth SIG Assigned Numbers (https://www.bluetooth.com/specifications/assigned-numbers/)]</p>
+  <table>
+    <thead><tr><th>Package ID</th><th>SHA-256</th><th>Declaring Method</th><th>Offset</th><th>Static Evidence</th></tr></thead>
+    <tbody><tr><td class='mono'><strong>org.example.client_only</strong></td><td class='mono'>a20c9b423574...</td><td class='mono'>::</td><td class='mono'>N/A</td><td>UUID candidate &#x27;0000180d-0000-1000-8000-00805f9b34fb&#x27; discovered in DEX constants/strings, but has no static data-flow link to BluetoothGattService constructor or BluetoothGattServer.addService() registration call sites.</td></tr><tr><td class='mono'><strong>org.example.service_a</strong></td><td class='mono'>b9c3e8bdf3e9...</td><td class='mono'>org.example.service_a.GattService::registerService</td><td class='mono'>+0x0018</td><td>Verified intra-method registration: Literal UUID &#x27;0000180d-0000-1000-8000-00805f9b34fb&#x27; loaded at offset 0x0000, converted via UUID.fromString at offset 0x0004, used in BluetoothGattService constructor at offset 0x0012, and registered via BluetoothGattServer.addService() at offset 0x0018.</td></tr><tr><td class='mono'><strong>org.example.service_b</strong></td><td class='mono'>3a9857720596...</td><td class='mono'>org.example.service_b.GattServer::registerService</td><td class='mono'>+0x0018</td><td>Verified intra-method registration: Literal UUID &#x27;0000180d-0000-1000-8000-00805f9b34fb&#x27; loaded at offset 0x0000, converted via UUID.fromString at offset 0x0004, used in BluetoothGattService constructor at offset 0x0012, and registered via BluetoothGattServer.addService() at offset 0x0018.</td></tr></tbody>
+  </table>
+</div>
+
+</div>
+
+    
+    
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">Analyzed APK Inventory Matrix</div>
+    <span class="badge badge-info">3 Successful</span>
+  </div>
+  <table>
+    <thead>
+      <tr><th>APK File Name</th><th>Package ID</th><th>Version</th><th>SHA-256</th><th>Candidates</th><th>Registrations</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      
+<tr>
+  <td class="mono"><strong>client_only.apk</strong><a href='/app/reports/demo_batch/client_only_a20c9b423574_report.html' style='color: var(--accent-blue); margin-left: 0.5rem;'>[HTML]</a><a href='/app/reports/demo_batch/client_only_a20c9b423574_report.json' style='color: var(--accent-blue); margin-left: 0.5rem;'>[JSON]</a></td>
+  <td class="mono">org.example.client_only</td>
+  <td>3.0.0 (300)</td>
+  <td class="mono">a20c9b423574ba78...</td>
+  <td>1</td>
+  <td style="color: #94a3b8;">0</td>
+  <td><span class="badge badge-success">success</span></td>
+</tr>
+
+<tr>
+  <td class="mono"><strong>service_a.apk</strong><a href='/app/reports/demo_batch/service_a_b9c3e8bdf3e9_report.html' style='color: var(--accent-blue); margin-left: 0.5rem;'>[HTML]</a><a href='/app/reports/demo_batch/service_a_b9c3e8bdf3e9_report.json' style='color: var(--accent-blue); margin-left: 0.5rem;'>[JSON]</a></td>
+  <td class="mono">org.example.service_a</td>
+  <td>1.0.0 (100)</td>
+  <td class="mono">b9c3e8bdf3e96a36...</td>
+  <td>1</td>
+  <td style="color: #34d399;">1</td>
+  <td><span class="badge badge-success">success</span></td>
+</tr>
+
+<tr>
+  <td class="mono"><strong>service_b.apk</strong><a href='/app/reports/demo_batch/service_b_3a9857720596_report.html' style='color: var(--accent-blue); margin-left: 0.5rem;'>[HTML]</a><a href='/app/reports/demo_batch/service_b_3a9857720596_report.json' style='color: var(--accent-blue); margin-left: 0.5rem;'>[JSON]</a></td>
+  <td class="mono">org.example.service_b</td>
+  <td>2.0.0 (200)</td>
+  <td class="mono">3a985772059640c7...</td>
+  <td>1</td>
+  <td style="color: #34d399;">1</td>
+  <td><span class="badge badge-success">success</span></td>
+</tr>
+
+    </tbody>
+  </table>
+</div>
+
+    
+    
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">Analytical Boundaries & Methodological Limitations</div>
+  </div>
+  <ul class="limitations-list">
+    <li>Definition of Strong Duplicate Static Registration: An assessment is classified as STRONG_DUPLICATE_STATIC_REGISTRATION (with is_proven = true strictly according to UCSD&#x27;s static-analysis evidence criteria) if and only if two or more distinct APK packages both demonstrate verified intra-method Dalvik register data-flow (STRONG_STATIC_ASSOCIATION) associating the identical GATT service UUID with BluetoothGattServer.addService(). Static analysis establishes high-confidence static overlap; it does NOT constitute proof of runtime vulnerability, confirmed host collision, or confirmed service squatting.</li><li>Duplicate Candidates are NOT Proven Conflicts: Identical UUID candidate strings appearing across multiple APKs (e.g. from shared third-party SDKs, utility libraries, or string pools) without verified dual static GATT registration are classified as DUPLICATE_CANDIDATE_NO_REGISTRATION. They are explicitly NOT presented as runtime service conflicts.</li><li>Non-Malicious Nature of Assigned Standards: Matching a Bluetooth SIG assigned UUID (e.g. Heart Rate, Battery Service) or known vendor identifier is a standard protocol implementation pattern. It does NOT indicate malicious intent or spoofing without operational device evidence.</li><li>No Unverifiable System/Vendor Claims: An identifier is classified as system-level or vendor-specific (KNOWN_SYSTEM_OR_VENDOR_MATCH) only when supported by verifiable source documentation in the versioned knowledge base.</li><li>Strict Absence of Calibrated Probabilities: Conflict determinations are discrete qualitative classifications based on verified static Dalvik bytecode evidence, not numeric risk scores or calibrated percentages.</li><li>Knowledge Base Scope and Currency: The UUID knowledge base contains curated identifiers with verifiable provenance. Unknown UUIDs remain strictly unknown (UNKNOWN_UNCONFLICTED).</li><li>Presence in DEX string pool is not proof of runtime execution or active service advertisement.</li><li>Intra-method tracing verifies Dalvik register data flow to BluetoothGattServer.addService(); it does not cover cross-method parameters, dynamic reflection, or native code.</li><li>UUID knowledge base lookup performs exact matching against curated public specifications with verifiable provenance. Unknown UUIDs remain strictly unknown.</li><li>Categorical evidence levels are qualitative static findings and do not represent calibrated runtime probabilities or risk scores.</li><li>Static analysis cannot prove runtime host-level vulnerability or confirmed service squatting without operational device execution.</li>
+  </ul>
+</div>
+
+    <footer>
+      Generated by UCSD (UUID Confusion Static Detection) &bull; Standalone Batch Report
+    </footer>
+  </div>
+</body>
+</html>

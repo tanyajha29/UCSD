@@ -1,0 +1,500 @@
+{
+  "status": "success",
+  "timestamp": "2026-10-10T17:37:07.962160+00:00",
+  "target": "/app/demo/inputs/service_a.apk",
+  "analyzer_version": "0.1.0",
+  "knowledge_base_version": "1.0.0",
+  "metadata": {
+    "file_path": "/app/demo/inputs/service_a.apk",
+    "file_name": "service_a.apk",
+    "file_size_bytes": 1203,
+    "sha256": "b9c3e8bdf3e96a36d668687c30b65c4986270d50bde3d7e7774f252d62b96357",
+    "is_valid_zip": true,
+    "is_multidex": false,
+    "dex_count": 1,
+    "dex_files": [
+      {
+        "name": "classes.dex",
+        "sha256": "3a4e8c8d1b7f380ef7f2b167304e143fba0ada99c843136773ac501f54d97f52",
+        "size_bytes": 960
+      }
+    ],
+    "manifest": {
+      "package_name": "org.example.service_a",
+      "version_code": 100,
+      "version_name": "1.0.0",
+      "min_sdk_version": 21,
+      "target_sdk_version": 33,
+      "max_sdk_version": null,
+      "requested_permissions": [
+        "android.permission.BLUETOOTH",
+        "android.permission.BLUETOOTH_CONNECT"
+      ],
+      "declared_permissions": [],
+      "activities": [
+        "org.example.service_a.MainActivity"
+      ],
+      "services": [],
+      "receivers": [],
+      "providers": [],
+      "main_activity": null
+    },
+    "ble_analysis": {
+      "has_ble_indicators": true,
+      "permissions": {
+        "requested": [
+          "android.permission.BLUETOOTH",
+          "android.permission.BLUETOOTH_CONNECT"
+        ],
+        "declared": [],
+        "has_ble_permission": true,
+        "has_classic_permission": true
+      },
+      "api_indicators": {
+        "framework_classes": [
+          "android.bluetooth.BluetoothGattServer",
+          "android.bluetooth.BluetoothGattService"
+        ],
+        "app_classes": [],
+        "referenced_methods": [
+          {
+            "dex_file": "classes.dex",
+            "class_name": "android.bluetooth.BluetoothGattServer",
+            "method_name": "addService",
+            "descriptor": "(Landroid/bluetooth/BluetoothGattService;)Z"
+          },
+          {
+            "dex_file": "classes.dex",
+            "class_name": "android.bluetooth.BluetoothGattService",
+            "method_name": "<init>",
+            "descriptor": "(Ljava/util/UUID; I)V"
+          }
+        ],
+        "has_gatt_client": false,
+        "has_gatt_server": true,
+        "has_le_scanner": false,
+        "has_le_advertiser": false,
+        "has_classic_bluetooth": false
+      },
+      "uuid_candidates": [
+        {
+          "normalized_uuid": "0000180d-0000-1000-8000-00805f9b34fb",
+          "is_bluetooth_sig_range": true,
+          "short_hex": "180d",
+          "sig_name": "Heart Rate",
+          "occurrence_count": 2,
+          "evidence": [
+            {
+              "original_text": "0000180d-0000-1000-8000-00805f9b34fb",
+              "normalized_uuid": "0000180d-0000-1000-8000-00805f9b34fb",
+              "format_type": "canonical-128",
+              "dex_file": "classes.dex",
+              "class_name": "org.example.service_a.GattService",
+              "method_name": "registerService",
+              "extraction_method": "bytecode_instruction",
+              "context_string": null
+            },
+            {
+              "original_text": "0000180d-0000-1000-8000-00805f9b34fb",
+              "normalized_uuid": "0000180d-0000-1000-8000-00805f9b34fb",
+              "format_type": "canonical-128",
+              "dex_file": "classes.dex",
+              "class_name": null,
+              "method_name": null,
+              "extraction_method": "string_pool",
+              "context_string": null
+            }
+          ]
+        }
+      ],
+      "candidate_summary": {
+        "total_candidates": 1,
+        "bluetooth_sig_range_count": 1,
+        "custom_uuid_count": 0,
+        "total_evidence_locations": 2,
+        "dex_files_analyzed": 1
+      },
+      "summary_notes": [
+        "Static analysis note: UUID candidates extracted from string pools or bytecode instructions are potential identifiers. Presence in a string pool or instruction is not proof of runtime use or active transmission.",
+        "Service registration note: A BLE API reference is not proof of server-side service registration or active GATT server establishment.",
+        "No UUID is marked as registered in Phase 2; all extracted UUIDs represent static candidates without registration verdicts.",
+        "Scope limitation: Analysis relies on DEX string pools, method reference tables, and const-string instruction inspection. Full program slicing and inter-procedural data-flow analysis are not performed.",
+        "Known false-positive sources: Standalone 4-character hex strings in DEX string pools (e.g. '0000', 'dead', 'fade') match 16-bit Bluetooth UUID syntax but may represent arbitrary string constants, dates, or hash fragments unless matched with known Bluetooth SIG assigned numbers or BLE API call sites."
+      ]
+    },
+    "registration_analysis": {
+      "has_gatt_registrations": true,
+      "total_add_service_calls": 1,
+      "total_service_constructions": 1,
+      "strong_associations_count": 1,
+      "unresolved_patterns_count": 0,
+      "candidate_only_count": 0,
+      "findings": [
+        {
+          "evidence_level": "STRONG_STATIC_ASSOCIATION",
+          "normalized_uuid": "0000180d-0000-1000-8000-00805f9b34fb",
+          "dex_file": "classes.dex",
+          "class_name": "org.example.service_a.GattService",
+          "method_name": "registerService",
+          "descriptor": "()V",
+          "diagnosis": "Verified intra-method registration: Literal UUID '0000180d-0000-1000-8000-00805f9b34fb' loaded at offset 0x0000, converted via UUID.fromString at offset 0x0004, used in BluetoothGattService constructor at offset 0x0012, and registered via BluetoothGattServer.addService() at offset 0x0018.",
+          "construction_site": {
+            "dex_file": "classes.dex",
+            "class_name": "org.example.service_a.GattService",
+            "method_name": "registerService",
+            "descriptor": "()V",
+            "instruction_offset": 18,
+            "service_register": 3,
+            "uuid_register": 1,
+            "service_type_register": 2,
+            "resolved_uuid": "0000180d-0000-1000-8000-00805f9b34fb",
+            "unresolved_reason": null
+          },
+          "registration_site": {
+            "dex_file": "classes.dex",
+            "class_name": "org.example.service_a.GattService",
+            "method_name": "registerService",
+            "descriptor": "()V",
+            "instruction_offset": 24,
+            "server_register": 4,
+            "service_register": 3,
+            "is_service_resolved_locally": true,
+            "unresolved_reason": null
+          },
+          "trace_steps": [
+            {
+              "step_index": 0,
+              "step_type": "load_uuid_string",
+              "instruction_offset": 0,
+              "opcode": "const-string",
+              "details": {
+                "register": 0,
+                "string_value": "0000180d-0000-1000-8000-00805f9b34fb"
+              }
+            },
+            {
+              "step_index": 1,
+              "step_type": "uuid_from_string",
+              "instruction_offset": 4,
+              "opcode": "invoke-static",
+              "details": {
+                "method": "Ljava/util/UUID;->fromString(Ljava/lang/String;)Ljava/util/UUID;",
+                "input_register": 0,
+                "result_register": 1
+              }
+            },
+            {
+              "step_index": 2,
+              "step_type": "service_constructor",
+              "instruction_offset": 18,
+              "opcode": "invoke-direct",
+              "details": {
+                "method": "Landroid/bluetooth/BluetoothGattService;-><init>(Ljava/util/UUID; I)V",
+                "service_register": 3,
+                "uuid_register": 1,
+                "resolved_uuid": "0000180d-0000-1000-8000-00805f9b34fb"
+              }
+            },
+            {
+              "step_index": 3,
+              "step_type": "add_service_registration",
+              "instruction_offset": 24,
+              "opcode": "invoke-virtual",
+              "details": {
+                "method": "Landroid/bluetooth/BluetoothGattServer;->addService(Landroid/bluetooth/BluetoothGattService;)Z",
+                "server_register": 4,
+                "service_register": 3
+              }
+            }
+          ],
+          "unresolved_reason": null
+        }
+      ],
+      "blind_spots_and_limitations": [
+        "Cross-Method Data Flow: BluetoothGattService objects constructed in helper/factory methods and passed across method boundaries to addService() are classified as REGISTRATION_PATTERN_UUID_UNRESOLVED because inter-procedural data-flow slicing is not performed.",
+        "Field-Based Storage: Services or UUIDs stored in instance/static fields (e.g. this.mService) and subsequently registered in separate lifecycle methods are classified as REGISTRATION_PATTERN_UUID_UNRESOLVED (FIELD_BASED_SERVICE_OBJECT).",
+        "Dynamic and Obfuscated UUIDs: UUID values generated at runtime via string concatenation, byte arrays, reflection, or UUID.randomUUID() cannot be resolved to static string literals.",
+        "Control-Flow Sensitivity: Intra-method tracing models forward register simulation; complex branching where registers are redefined on alternative paths falls back safely to REGISTRATION_PATTERN_UUID_UNRESOLVED.",
+        "Non-Standard Wrapper Frameworks: Third-party reactive or proprietary BLE vendor SDKs that encapsulate BluetoothGattServer internally without calling standard Android framework APIs directly are not tracked."
+      ]
+    },
+    "knowledge_base_assessment": {
+      "total_candidates_checked": 1,
+      "known_standard_matches_count": 1,
+      "known_system_vendor_matches_count": 0,
+      "unknown_candidates_count": 0,
+      "findings": [
+        {
+          "normalized_uuid": "0000180d-0000-1000-8000-00805f9b34fb",
+          "condition": "KNOWN_ASSIGNED_STANDARD_MATCH",
+          "is_proven": false,
+          "is_proven_service_conflict": false,
+          "explanation": "Matches official Bluetooth SIG assigned specification 'Heart Rate Service' (https://www.bluetooth.com/specifications/assigned-numbers/). Standard protocol identifier; not indicative of conflict or malicious intent. Analyst note: Standard GATT Heart Rate Service (16-bit 0x180D) widely used by health, fitness wearables, and chest straps.",
+          "knowledge_base_match": {
+            "normalized_uuid": "0000180d-0000-1000-8000-00805f9b34fb",
+            "name": "Heart Rate Service",
+            "category": "bluetooth_sig_service",
+            "source_name": "Bluetooth SIG Assigned Numbers",
+            "source_url": "https://www.bluetooth.com/specifications/assigned-numbers/",
+            "source_type": "STANDARDS_ORGANIZATION",
+            "source_version_or_date": "2026-01-15",
+            "is_system_or_vendor": false,
+            "analyst_notes": "Standard GATT Heart Rate Service (16-bit 0x180D) widely used by health, fitness wearables, and chest straps."
+          },
+          "participating_apks": [
+            {
+              "package_name": "org.example.service_a",
+              "version_code": 100,
+              "version_name": "1.0.0",
+              "file_name": "service_a.apk",
+              "sha256": "b9c3e8bdf3e96a36d668687c30b65c4986270d50bde3d7e7774f252d62b96357",
+              "evidence_level": "STRONG_STATIC_ASSOCIATION",
+              "class_name": "org.example.service_a.GattService",
+              "method_name": "registerService",
+              "descriptor": "()V",
+              "dex_file": "classes.dex",
+              "instruction_offset": 24,
+              "diagnosis": "Verified intra-method registration: Literal UUID '0000180d-0000-1000-8000-00805f9b34fb' loaded at offset 0x0000, converted via UUID.fromString at offset 0x0004, used in BluetoothGattService constructor at offset 0x0012, and registered via BluetoothGattServer.addService() at offset 0x0018."
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "ble_analysis": {
+    "has_ble_indicators": true,
+    "permissions": {
+      "requested": [
+        "android.permission.BLUETOOTH",
+        "android.permission.BLUETOOTH_CONNECT"
+      ],
+      "declared": [],
+      "has_ble_permission": true,
+      "has_classic_permission": true
+    },
+    "api_indicators": {
+      "framework_classes": [
+        "android.bluetooth.BluetoothGattServer",
+        "android.bluetooth.BluetoothGattService"
+      ],
+      "app_classes": [],
+      "referenced_methods": [
+        {
+          "dex_file": "classes.dex",
+          "class_name": "android.bluetooth.BluetoothGattServer",
+          "method_name": "addService",
+          "descriptor": "(Landroid/bluetooth/BluetoothGattService;)Z"
+        },
+        {
+          "dex_file": "classes.dex",
+          "class_name": "android.bluetooth.BluetoothGattService",
+          "method_name": "<init>",
+          "descriptor": "(Ljava/util/UUID; I)V"
+        }
+      ],
+      "has_gatt_client": false,
+      "has_gatt_server": true,
+      "has_le_scanner": false,
+      "has_le_advertiser": false,
+      "has_classic_bluetooth": false
+    },
+    "uuid_candidates": [
+      {
+        "normalized_uuid": "0000180d-0000-1000-8000-00805f9b34fb",
+        "is_bluetooth_sig_range": true,
+        "short_hex": "180d",
+        "sig_name": "Heart Rate",
+        "occurrence_count": 2,
+        "evidence": [
+          {
+            "original_text": "0000180d-0000-1000-8000-00805f9b34fb",
+            "normalized_uuid": "0000180d-0000-1000-8000-00805f9b34fb",
+            "format_type": "canonical-128",
+            "dex_file": "classes.dex",
+            "class_name": "org.example.service_a.GattService",
+            "method_name": "registerService",
+            "extraction_method": "bytecode_instruction",
+            "context_string": null
+          },
+          {
+            "original_text": "0000180d-0000-1000-8000-00805f9b34fb",
+            "normalized_uuid": "0000180d-0000-1000-8000-00805f9b34fb",
+            "format_type": "canonical-128",
+            "dex_file": "classes.dex",
+            "class_name": null,
+            "method_name": null,
+            "extraction_method": "string_pool",
+            "context_string": null
+          }
+        ]
+      }
+    ],
+    "candidate_summary": {
+      "total_candidates": 1,
+      "bluetooth_sig_range_count": 1,
+      "custom_uuid_count": 0,
+      "total_evidence_locations": 2,
+      "dex_files_analyzed": 1
+    },
+    "summary_notes": [
+      "Static analysis note: UUID candidates extracted from string pools or bytecode instructions are potential identifiers. Presence in a string pool or instruction is not proof of runtime use or active transmission.",
+      "Service registration note: A BLE API reference is not proof of server-side service registration or active GATT server establishment.",
+      "No UUID is marked as registered in Phase 2; all extracted UUIDs represent static candidates without registration verdicts.",
+      "Scope limitation: Analysis relies on DEX string pools, method reference tables, and const-string instruction inspection. Full program slicing and inter-procedural data-flow analysis are not performed.",
+      "Known false-positive sources: Standalone 4-character hex strings in DEX string pools (e.g. '0000', 'dead', 'fade') match 16-bit Bluetooth UUID syntax but may represent arbitrary string constants, dates, or hash fragments unless matched with known Bluetooth SIG assigned numbers or BLE API call sites."
+    ]
+  },
+  "registration_analysis": {
+    "has_gatt_registrations": true,
+    "total_add_service_calls": 1,
+    "total_service_constructions": 1,
+    "strong_associations_count": 1,
+    "unresolved_patterns_count": 0,
+    "candidate_only_count": 0,
+    "findings": [
+      {
+        "evidence_level": "STRONG_STATIC_ASSOCIATION",
+        "normalized_uuid": "0000180d-0000-1000-8000-00805f9b34fb",
+        "dex_file": "classes.dex",
+        "class_name": "org.example.service_a.GattService",
+        "method_name": "registerService",
+        "descriptor": "()V",
+        "diagnosis": "Verified intra-method registration: Literal UUID '0000180d-0000-1000-8000-00805f9b34fb' loaded at offset 0x0000, converted via UUID.fromString at offset 0x0004, used in BluetoothGattService constructor at offset 0x0012, and registered via BluetoothGattServer.addService() at offset 0x0018.",
+        "construction_site": {
+          "dex_file": "classes.dex",
+          "class_name": "org.example.service_a.GattService",
+          "method_name": "registerService",
+          "descriptor": "()V",
+          "instruction_offset": 18,
+          "service_register": 3,
+          "uuid_register": 1,
+          "service_type_register": 2,
+          "resolved_uuid": "0000180d-0000-1000-8000-00805f9b34fb",
+          "unresolved_reason": null
+        },
+        "registration_site": {
+          "dex_file": "classes.dex",
+          "class_name": "org.example.service_a.GattService",
+          "method_name": "registerService",
+          "descriptor": "()V",
+          "instruction_offset": 24,
+          "server_register": 4,
+          "service_register": 3,
+          "is_service_resolved_locally": true,
+          "unresolved_reason": null
+        },
+        "trace_steps": [
+          {
+            "step_index": 0,
+            "step_type": "load_uuid_string",
+            "instruction_offset": 0,
+            "opcode": "const-string",
+            "details": {
+              "register": 0,
+              "string_value": "0000180d-0000-1000-8000-00805f9b34fb"
+            }
+          },
+          {
+            "step_index": 1,
+            "step_type": "uuid_from_string",
+            "instruction_offset": 4,
+            "opcode": "invoke-static",
+            "details": {
+              "method": "Ljava/util/UUID;->fromString(Ljava/lang/String;)Ljava/util/UUID;",
+              "input_register": 0,
+              "result_register": 1
+            }
+          },
+          {
+            "step_index": 2,
+            "step_type": "service_constructor",
+            "instruction_offset": 18,
+            "opcode": "invoke-direct",
+            "details": {
+              "method": "Landroid/bluetooth/BluetoothGattService;-><init>(Ljava/util/UUID; I)V",
+              "service_register": 3,
+              "uuid_register": 1,
+              "resolved_uuid": "0000180d-0000-1000-8000-00805f9b34fb"
+            }
+          },
+          {
+            "step_index": 3,
+            "step_type": "add_service_registration",
+            "instruction_offset": 24,
+            "opcode": "invoke-virtual",
+            "details": {
+              "method": "Landroid/bluetooth/BluetoothGattServer;->addService(Landroid/bluetooth/BluetoothGattService;)Z",
+              "server_register": 4,
+              "service_register": 3
+            }
+          }
+        ],
+        "unresolved_reason": null
+      }
+    ],
+    "blind_spots_and_limitations": [
+      "Cross-Method Data Flow: BluetoothGattService objects constructed in helper/factory methods and passed across method boundaries to addService() are classified as REGISTRATION_PATTERN_UUID_UNRESOLVED because inter-procedural data-flow slicing is not performed.",
+      "Field-Based Storage: Services or UUIDs stored in instance/static fields (e.g. this.mService) and subsequently registered in separate lifecycle methods are classified as REGISTRATION_PATTERN_UUID_UNRESOLVED (FIELD_BASED_SERVICE_OBJECT).",
+      "Dynamic and Obfuscated UUIDs: UUID values generated at runtime via string concatenation, byte arrays, reflection, or UUID.randomUUID() cannot be resolved to static string literals.",
+      "Control-Flow Sensitivity: Intra-method tracing models forward register simulation; complex branching where registers are redefined on alternative paths falls back safely to REGISTRATION_PATTERN_UUID_UNRESOLVED.",
+      "Non-Standard Wrapper Frameworks: Third-party reactive or proprietary BLE vendor SDKs that encapsulate BluetoothGattServer internally without calling standard Android framework APIs directly are not tracked."
+    ]
+  },
+  "knowledge_base_assessment": {
+    "total_candidates_checked": 1,
+    "known_standard_matches_count": 1,
+    "known_system_vendor_matches_count": 0,
+    "unknown_candidates_count": 0,
+    "findings": [
+      {
+        "normalized_uuid": "0000180d-0000-1000-8000-00805f9b34fb",
+        "condition": "KNOWN_ASSIGNED_STANDARD_MATCH",
+        "is_proven": false,
+        "is_proven_service_conflict": false,
+        "explanation": "Matches official Bluetooth SIG assigned specification 'Heart Rate Service' (https://www.bluetooth.com/specifications/assigned-numbers/). Standard protocol identifier; not indicative of conflict or malicious intent. Analyst note: Standard GATT Heart Rate Service (16-bit 0x180D) widely used by health, fitness wearables, and chest straps.",
+        "knowledge_base_match": {
+          "normalized_uuid": "0000180d-0000-1000-8000-00805f9b34fb",
+          "name": "Heart Rate Service",
+          "category": "bluetooth_sig_service",
+          "source_name": "Bluetooth SIG Assigned Numbers",
+          "source_url": "https://www.bluetooth.com/specifications/assigned-numbers/",
+          "source_type": "STANDARDS_ORGANIZATION",
+          "source_version_or_date": "2026-01-15",
+          "is_system_or_vendor": false,
+          "analyst_notes": "Standard GATT Heart Rate Service (16-bit 0x180D) widely used by health, fitness wearables, and chest straps."
+        },
+        "participating_apks": [
+          {
+            "package_name": "org.example.service_a",
+            "version_code": 100,
+            "version_name": "1.0.0",
+            "file_name": "service_a.apk",
+            "sha256": "b9c3e8bdf3e96a36d668687c30b65c4986270d50bde3d7e7774f252d62b96357",
+            "evidence_level": "STRONG_STATIC_ASSOCIATION",
+            "class_name": "org.example.service_a.GattService",
+            "method_name": "registerService",
+            "descriptor": "()V",
+            "dex_file": "classes.dex",
+            "instruction_offset": 24,
+            "diagnosis": "Verified intra-method registration: Literal UUID '0000180d-0000-1000-8000-00805f9b34fb' loaded at offset 0x0000, converted via UUID.fromString at offset 0x0004, used in BluetoothGattService constructor at offset 0x0012, and registered via BluetoothGattServer.addService() at offset 0x0018."
+          }
+        ]
+      }
+    ]
+  },
+  "limitations": [
+    "Definition of Strong Duplicate Static Registration: An assessment is classified as STRONG_DUPLICATE_STATIC_REGISTRATION (with is_proven = true strictly according to UCSD's static-analysis evidence criteria) if and only if two or more distinct APK packages both demonstrate verified intra-method Dalvik register data-flow (STRONG_STATIC_ASSOCIATION) associating the identical GATT service UUID with BluetoothGattServer.addService(). Static analysis establishes high-confidence static overlap; it does NOT constitute proof of runtime vulnerability, confirmed host collision, or confirmed service squatting.",
+    "Duplicate Candidates are NOT Proven Conflicts: Identical UUID candidate strings appearing across multiple APKs (e.g. from shared third-party SDKs, utility libraries, or string pools) without verified dual static GATT registration are classified as DUPLICATE_CANDIDATE_NO_REGISTRATION. They are explicitly NOT presented as runtime service conflicts.",
+    "Non-Malicious Nature of Assigned Standards: Matching a Bluetooth SIG assigned UUID (e.g. Heart Rate, Battery Service) or known vendor identifier is a standard protocol implementation pattern. It does NOT indicate malicious intent or spoofing without operational device evidence.",
+    "No Unverifiable System/Vendor Claims: An identifier is classified as system-level or vendor-specific (KNOWN_SYSTEM_OR_VENDOR_MATCH) only when supported by verifiable source documentation in the versioned knowledge base.",
+    "Strict Absence of Calibrated Probabilities: Conflict determinations are discrete qualitative classifications based on verified static Dalvik bytecode evidence, not numeric risk scores or calibrated percentages.",
+    "Knowledge Base Scope and Currency: The UUID knowledge base contains curated identifiers with verifiable provenance. Unknown UUIDs remain strictly unknown (UNKNOWN_UNCONFLICTED).",
+    "Presence in DEX string pool is not proof of runtime execution or active service advertisement.",
+    "Intra-method tracing verifies Dalvik register data flow to BluetoothGattServer.addService(); it does not cover cross-method parameters, dynamic reflection, or native code.",
+    "UUID knowledge base lookup performs exact matching against curated public specifications with verifiable provenance. Unknown UUIDs remain strictly unknown.",
+    "Categorical evidence levels are qualitative static findings and do not represent calibrated runtime probabilities or risk scores.",
+    "Static analysis cannot prove runtime host-level vulnerability or confirmed service squatting without operational device execution."
+  ],
+  "html_report_path": "/app/reports/service_a_b9c3e8bdf3e9_report.html",
+  "error": null
+}

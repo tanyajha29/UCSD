@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UCSD APK Analysis: service_b.apk</title>
+  <style>
+:root {
+  --bg-main: #0b0f19;
+  --bg-card: #151e32;
+  --bg-card-sub: #1a253e;
+  --bg-code: #0d1322;
+  --border-color: #23324d;
+  --border-light: #2e4166;
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+  --accent-blue: #38bdf8;
+  --accent-green: #10b981;
+  --accent-amber: #f59e0b;
+  --accent-red: #ef4444;
+  --accent-purple: #a855f7;
+  --accent-indigo: #818cf8;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.5;
+  padding: 1.5rem;
+}
+.container { max-width: 1300px; margin: 0 auto; }
+
+/* Header Banner */
+header {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem 2rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.header-title h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.025em;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.header-title p {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+.header-meta {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.badge-success { background-color: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+.badge-danger { background-color: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+.badge-warning { background-color: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+.badge-info { background-color: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+.badge-purple { background-color: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
+.badge-secondary { background-color: rgba(100, 116, 139, 0.2); color: #cbd5e1; border: 1px solid var(--border-light); }
+
+/* Metrics Grid */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.metric-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+}
+.metric-title {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+.metric-val {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin-top: 0.25rem;
+  font-family: "SFMono-Regular", Consolas, monospace;
+}
+.metric-sub {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  margin-top: 0.25rem;
+}
+
+/* Cards & Sections */
+.card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+}
+.card-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Callouts / Banners */
+.alert {
+  padding: 1rem 1.25rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+}
+.alert-danger {
+  background-color: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
+}
+.alert-warning {
+  background-color: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  color: #fde68a;
+}
+.alert-info {
+  background-color: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: #bae6fd;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+th, td {
+  padding: 0.65rem 0.85rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+th {
+  background-color: var(--bg-card-sub);
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+tr:hover td {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+.mono {
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.8125rem;
+}
+.hash-pill {
+  background: var(--bg-code);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.8rem;
+  word-break: break-all;
+}
+
+/* Details and Lists */
+details {
+  background-color: var(--bg-card-sub);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+}
+summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--accent-blue);
+  padding: 0.25rem 0;
+}
+.details-content {
+  padding-top: 0.75rem;
+  font-size: 0.8125rem;
+}
+
+.chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+.chip {
+  background-color: var(--bg-card-sub);
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem;
+  font-family: "SFMono-Regular", Consolas, monospace;
+}
+
+/* Limitations */
+.limitations-list {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+.limitations-list li {
+  margin-bottom: 0.5rem;
+}
+
+footer {
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 0.75rem;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+</style>
+</head>
+<body>
+  <div class="container">
+    
+<header>
+  <div class="header-title">
+    <h1>UCSD APK Analysis: service_b.apk</h1>
+    <p>Target: <span class="mono">/app/demo/inputs/service_b.apk</span> &bull; Analyzed at 2026-10-14T14:10:49.570902+00:00 UTC</p>
+  </div>
+  <div class="header-meta">
+    <span class="badge badge-success">Status: success</span>
+    <span class="badge badge-info">Analyzer v0.1.0</span>
+    <span class="badge badge-purple">KB v1.0.0</span>
+  </div>
+</header>
+
+    
+    
+<div class="metrics-grid">
+  <div class="metric-card">
+    <div class="metric-title">Package ID</div>
+    <div class="metric-val" style="font-size: 1.1rem; word-break: break-all;">org.example.service_b</div>
+    <div class="metric-sub">Version: 2.0.0 (200)</div>
+  </div>
+  <div class="metric-card">
+    <div class="metric-title">Archive Size</div>
+    <div class="metric-val">0.00 MB</div>
+    <div class="metric-sub">1 DEX file(s) (Multi-DEX: False)</div>
+  </div>
+  <div class="metric-card">
+    <div class="metric-title">Permissions</div>
+    <div class="metric-val">2</div>
+    <div class="metric-sub">Declared: 0</div>
+  </div>
+  <div class="metric-card">
+    <div class="metric-title">UUID Candidates</div>
+    <div class="metric-val">1</div>
+    <div class="metric-sub">Extracted from DEX files</div>
+  </div>
+  <div class="metric-card">
+    <div class="metric-title">GATT Registrations</div>
+    <div class="metric-val" style="color: #34d399;">1</div>
+    <div class="metric-sub">Strong static associations</div>
+  </div>
+</div>
+
+    
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">APK Intake & Manifest Integrity</div>
+    <span class="badge badge-secondary">SHA-256</span>
+  </div>
+  <p style="margin-bottom: 1rem;"><span class="hash-pill">3a985772059640c7f840039ed80f38dff35fa4e606f3661012b1b252bbce6cf3</span></p>
+  <table>
+    <thead>
+      <tr><th>Property</th><th>Value</th><th>Property</th><th>Value</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Package Name</strong></td><td class="mono">org.example.service_b</td>
+        <td><strong>Version</strong></td><td>2.0.0 (code: 200)</td>
+      </tr>
+      <tr>
+        <td><strong>Min SDK</strong></td><td>21</td>
+        <td><strong>Target SDK</strong></td><td>33</td>
+      </tr>
+      <tr>
+        <td><strong>Main Activity</strong></td><td colspan="3" class="mono"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <details>
+    <summary>DEX File Inventory (1 files)</summary>
+    <table>
+      <thead><tr><th>DEX Name</th><th>SHA-256</th><th>Size</th></tr></thead>
+      <tbody><tr><td class='mono'>classes.dex</td><td class='mono'>ceb32c52d4dd7effd0ec3412c082bd512167fb1098e47f7859c0cca2e9879c9e</td><td>956 B</td></tr></tbody>
+    </table>
+  </details>
+</div>
+
+    
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">Bluetooth &amp; BLE Static Indicators (Phase 2)</div>
+  </div>
+  <div style="margin-bottom: 1rem;">
+    <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600; margin-bottom: 0.25rem;">Bluetooth Permissions</div>
+    <div class="chip-list"><span class="badge badge-secondary">android.permission.BLUETOOTH [Classic]</span> <span class="badge badge-info">android.permission.BLUETOOTH_CONNECT [BLE]</span> </div>
+  </div>
+
+  <div style="margin-bottom: 1rem;">
+    <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600; margin-bottom: 0.25rem;">API Framework Capabilities</div>
+    
+<div class="chip-list">
+  <span class="badge badge-success">GATT Server: True</span>
+  <span class="badge badge-secondary">GATT Client: False</span>
+  <span class="badge badge-secondary">LE Scanner: False</span>
+  <span class="badge badge-secondary">LE Advertiser: False</span>
+</div>
+
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin-top: 1rem;">
+    <details>
+      <summary>Framework Classes Referenced (2)</summary>
+      <ul style="padding-left: 1.25rem; margin-top: 0.5rem; font-size: 0.8125rem;"><li><span class='mono'>android.bluetooth.BluetoothGattServer</span></li><li><span class='mono'>android.bluetooth.BluetoothGattService</span></li></ul>
+    </details>
+    <details>
+      <summary>Application BLE Classes (0)</summary>
+      <ul style="padding-left: 1.25rem; margin-top: 0.5rem; font-size: 0.8125rem;"></ul>
+    </details>
+  </div>
+</div>
+
+    
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">GATT Service Registration Analysis (Phase 3)</div>
+    <span class="badge badge-info">1 addService calls</span>
+  </div>
+  
+<div class="alert alert-danger">
+  <strong>HIGH-CONFIDENCE STATIC REGISTRATIONS DETECTED:</strong> This APK statically constructs and registers 1 GATT service(s) via verified Dalvik register data-flow to <code>BluetoothGattServer.addService()</code>.
+</div>
+
+  <table>
+    <thead>
+      <tr><th>Evidence Level</th><th>UUID</th><th>Method Location</th><th>Diagnosis & Trace</th></tr>
+    </thead>
+    <tbody>
+      
+<tr>
+  <td><span class="badge badge-danger">STRONG STATIC</span></td>
+  <td class="mono">0000180d-0000-1000-8000-00805f9b34fb</td>
+  <td class="mono">org.example.service_b.GattServer::registerService</td>
+  <td>Verified intra-method registration: Literal UUID &#x27;0000180d-0000-1000-8000-00805f9b34fb&#x27; loaded at offset 0x0000, converted via UUID.fromString at offset 0x0004, used in BluetoothGattService constructor at offset 0x0012, and registered via BluetoothGattServer.addService() at offset 0x0018.
+<details style="margin-top: 0.5rem;">
+  <summary>Dalvik Register Trace (4 steps)</summary>
+  <table>
+    <thead><tr><th>#</th><th>Offset</th><th>Opcode</th><th>Action</th></tr></thead>
+    <tbody><tr><td>0</td><td class='mono'>+0x0000</td><td class='mono'>const-string</td><td>load_uuid_string</td></tr><tr><td>1</td><td class='mono'>+0x0004</td><td class='mono'>invoke-static</td><td>uuid_from_string</td></tr><tr><td>2</td><td class='mono'>+0x0012</td><td class='mono'>invoke-direct</td><td>service_constructor</td></tr><tr><td>3</td><td class='mono'>+0x0018</td><td class='mono'>invoke-virtual</td><td>add_service_registration</td></tr></tbody>
+  </table>
+</details>
+</td>
+</tr>
+
+    </tbody>
+  </table>
+</div>
+
+    
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">UUID Knowledge Base & Candidate Findings (Phase 4)</div>
+    <span class="badge badge-info">1 Candidates</span>
+  </div>
+  <table>
+    <thead>
+      <tr><th>Normalized 128-bit UUID</th><th>Category</th><th>Provenance & Technical Context</th></tr>
+    </thead>
+    <tbody>
+      
+<tr>
+  <td class="mono">0000180d-0000-1000-8000-00805f9b34fb</td>
+  <td><span class="badge badge-success">Bluetooth SIG</span></td>
+  <td><strong>Heart Rate Service</strong> (<a href='https://www.bluetooth.com/specifications/assigned-numbers/' target='_blank' style='color: var(--accent-blue);'>Bluetooth SIG Assigned Numbers</a>) &bull; Standard GATT Heart Rate Service (16-bit 0x180D) widely used by health, fitness wearables, and chest straps.<br><span class='mono' style='font-size: 0.75rem; color: var(--text-muted);'>org.example.service_b.GattServer::registerService</span></td>
+</tr>
+
+    </tbody>
+  </table>
+</div>
+
+    
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">Analytical Boundaries & Methodological Limitations</div>
+  </div>
+  <ul class="limitations-list">
+    <li>Definition of Strong Duplicate Static Registration: An assessment is classified as STRONG_DUPLICATE_STATIC_REGISTRATION (with is_proven = true strictly according to UCSD&#x27;s static-analysis evidence criteria) if and only if two or more distinct APK packages both demonstrate verified intra-method Dalvik register data-flow (STRONG_STATIC_ASSOCIATION) associating the identical GATT service UUID with BluetoothGattServer.addService(). Static analysis establishes high-confidence static overlap; it does NOT constitute proof of runtime vulnerability, confirmed host collision, or confirmed service squatting.</li><li>Duplicate Candidates are NOT Proven Conflicts: Identical UUID candidate strings appearing across multiple APKs (e.g. from shared third-party SDKs, utility libraries, or string pools) without verified dual static GATT registration are classified as DUPLICATE_CANDIDATE_NO_REGISTRATION. They are explicitly NOT presented as runtime service conflicts.</li><li>Non-Malicious Nature of Assigned Standards: Matching a Bluetooth SIG assigned UUID (e.g. Heart Rate, Battery Service) or known vendor identifier is a standard protocol implementation pattern. It does NOT indicate malicious intent or spoofing without operational device evidence.</li><li>No Unverifiable System/Vendor Claims: An identifier is classified as system-level or vendor-specific (KNOWN_SYSTEM_OR_VENDOR_MATCH) only when supported by verifiable source documentation in the versioned knowledge base.</li><li>Strict Absence of Calibrated Probabilities: Conflict determinations are discrete qualitative classifications based on verified static Dalvik bytecode evidence, not numeric risk scores or calibrated percentages.</li><li>Knowledge Base Scope and Currency: The UUID knowledge base contains curated identifiers with verifiable provenance. Unknown UUIDs remain strictly unknown (UNKNOWN_UNCONFLICTED).</li><li>Presence in DEX string pool is not proof of runtime execution or active service advertisement.</li><li>Intra-method tracing verifies Dalvik register data flow to BluetoothGattServer.addService(); it does not cover cross-method parameters, dynamic reflection, or native code.</li><li>UUID knowledge base lookup performs exact matching against curated public specifications with verifiable provenance. Unknown UUIDs remain strictly unknown.</li><li>Categorical evidence levels are qualitative static findings and do not represent calibrated runtime probabilities or risk scores.</li><li>Static analysis cannot prove runtime host-level vulnerability or confirmed service squatting without operational device execution.</li>
+  </ul>
+</div>
+
+    <footer>
+      Generated by UCSD (UUID Confusion Static Detection) &bull; Standalone Offline Report
+    </footer>
+  </div>
+</body>
+</html>

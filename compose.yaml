@@ -1,0 +1,27 @@
+name: ucsd
+
+services:
+  ucsd:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ucsd:latest
+    privileged: false
+    security_opt:
+      - no-new-privileges:true
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./ucsd:/app/ucsd
+      - ./tests:/app/tests
+      - ./samples:/app/samples:ro
+      - ./reports:/app/reports
+      - ./data:/app/data
+      - ./demo:/app/demo:ro
+      - ./workspace:/app/workspace
+      - ./frontend/dist:/app/frontend/dist:ro
+    environment:
+      - UCSD_DB_PATH=/app/data/db/ucsd.db
+      - UCSD_WORKSPACE_DIR=/app/workspace/uploads
+      - UCSD_REPORTS_DIR=/app/reports
+    command: ["uvicorn", "ucsd.server.app:app", "--host", "0.0.0.0", "--port", "8000"]

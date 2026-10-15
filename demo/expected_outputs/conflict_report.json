@@ -1,0 +1,75 @@
+{
+  "total_apks_analyzed": 2,
+  "total_unique_uuids_evaluated": 1,
+  "strong_duplicate_static_registrations_count": 1,
+  "proven_registration_conflicts_count": 1,
+  "duplicate_candidates_unregistered_count": 0,
+  "known_standard_matches_count": 1,
+  "known_system_vendor_matches_count": 0,
+  "unknown_uuids_count": 0,
+  "assessments": [
+    {
+      "normalized_uuid": "0000180d-0000-1000-8000-00805f9b34fb",
+      "condition": "STRONG_DUPLICATE_STATIC_REGISTRATION",
+      "is_proven": true,
+      "is_proven_service_conflict": true,
+      "explanation": "Two distinct APKs (org.example.service_a, org.example.service_b) contain strong static evidence (STRONG_STATIC_ASSOCIATION) associating the same UUID '0000180d-0000-1000-8000-00805f9b34fb' with GATT service registration via BluetoothGattServer.addService(). This is a high-confidence static overlap and may warrant runtime/host-context validation. [Knowledge Base Provenance: 'Heart Rate Service' sourced from Bluetooth SIG Assigned Numbers (https://www.bluetooth.com/specifications/assigned-numbers/)]",
+      "knowledge_base_match": {
+        "normalized_uuid": "0000180d-0000-1000-8000-00805f9b34fb",
+        "name": "Heart Rate Service",
+        "category": "bluetooth_sig_service",
+        "source_name": "Bluetooth SIG Assigned Numbers",
+        "source_url": "https://www.bluetooth.com/specifications/assigned-numbers/",
+        "source_type": "STANDARDS_ORGANIZATION",
+        "source_version_or_date": "2026-01-15",
+        "is_system_or_vendor": false,
+        "analyst_notes": "Standard GATT Heart Rate Service (16-bit 0x180D) widely used by health, fitness wearables, and chest straps."
+      },
+      "participating_apks": [
+        {
+          "package_name": "org.example.service_a",
+          "version_code": 100,
+          "version_name": "1.0.0",
+          "file_name": "service_a.apk",
+          "sha256": "b9c3e8bdf3e96a36d668687c30b65c4986270d50bde3d7e7774f252d62b96357",
+          "evidence_level": "STRONG_STATIC_ASSOCIATION",
+          "class_name": "org.example.service_a.GattService",
+          "method_name": "registerService",
+          "descriptor": "()V",
+          "dex_file": "classes.dex",
+          "instruction_offset": 24,
+          "diagnosis": "Verified intra-method registration: Literal UUID '0000180d-0000-1000-8000-00805f9b34fb' loaded at offset 0x0000, converted via UUID.fromString at offset 0x0004, used in BluetoothGattService constructor at offset 0x0012, and registered via BluetoothGattServer.addService() at offset 0x0018."
+        },
+        {
+          "package_name": "org.example.service_b",
+          "version_code": 200,
+          "version_name": "2.0.0",
+          "file_name": "service_b.apk",
+          "sha256": "3a985772059640c7f840039ed80f38dff35fa4e606f3661012b1b252bbce6cf3",
+          "evidence_level": "STRONG_STATIC_ASSOCIATION",
+          "class_name": "org.example.service_b.GattServer",
+          "method_name": "registerService",
+          "descriptor": "()V",
+          "dex_file": "classes.dex",
+          "instruction_offset": 24,
+          "diagnosis": "Verified intra-method registration: Literal UUID '0000180d-0000-1000-8000-00805f9b34fb' loaded at offset 0x0000, converted via UUID.fromString at offset 0x0004, used in BluetoothGattService constructor at offset 0x0012, and registered via BluetoothGattServer.addService() at offset 0x0018."
+        }
+      ]
+    }
+  ],
+  "knowledge_base_metadata": {
+    "knowledge_base_version": "1.0.0",
+    "schema_version": "1.0",
+    "last_updated": "2026-10-04",
+    "total_entries": 24,
+    "provenance_policy": "Strict provenance requirement: every identifier must be sourced from an official standards body (e.g., Bluetooth SIG), an operating system vendor (e.g., AOSP, Google), or a published hardware vendor technical specification. No unsourced or speculative entries are permitted."
+  },
+  "methodology_and_limitations": [
+    "Definition of Strong Duplicate Static Registration: An assessment is classified as STRONG_DUPLICATE_STATIC_REGISTRATION (with is_proven = true strictly according to UCSD's static-analysis evidence criteria) if and only if two or more distinct APK packages both demonstrate verified intra-method Dalvik register data-flow (STRONG_STATIC_ASSOCIATION) associating the identical GATT service UUID with BluetoothGattServer.addService(). Static analysis establishes high-confidence static overlap; it does NOT constitute proof of runtime vulnerability, confirmed host collision, or confirmed service squatting.",
+    "Duplicate Candidates are NOT Proven Conflicts: Identical UUID candidate strings appearing across multiple APKs (e.g. from shared third-party SDKs, utility libraries, or string pools) without verified dual static GATT registration are classified as DUPLICATE_CANDIDATE_NO_REGISTRATION. They are explicitly NOT presented as runtime service conflicts.",
+    "Non-Malicious Nature of Assigned Standards: Matching a Bluetooth SIG assigned UUID (e.g. Heart Rate, Battery Service) or known vendor identifier is a standard protocol implementation pattern. It does NOT indicate malicious intent or spoofing without operational device evidence.",
+    "No Unverifiable System/Vendor Claims: An identifier is classified as system-level or vendor-specific (KNOWN_SYSTEM_OR_VENDOR_MATCH) only when supported by verifiable source documentation in the versioned knowledge base.",
+    "Strict Absence of Calibrated Probabilities: Conflict determinations are discrete qualitative classifications based on verified static Dalvik bytecode evidence, not numeric risk scores or calibrated percentages.",
+    "Knowledge Base Scope and Currency: The UUID knowledge base contains curated identifiers with verifiable provenance. Unknown UUIDs remain strictly unknown (UNKNOWN_UNCONFLICTED)."
+  ]
+}

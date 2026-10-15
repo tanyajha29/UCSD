@@ -1,0 +1,272 @@
+{
+  "knowledge_base_version": "1.0.0",
+  "schema_version": "1.0",
+  "last_updated": "2026-10-04",
+  "provenance_policy": "Strict provenance requirement: every identifier must be sourced from an official standards body (e.g., Bluetooth SIG), an operating system vendor (e.g., AOSP, Google), or a published hardware vendor technical specification. No unsourced or speculative entries are permitted.",
+  "entries": [
+    {
+      "normalized_uuid": "00001800-0000-1000-8000-00805f9b34fb",
+      "name": "Generic Access Service",
+      "category": "bluetooth_sig_service",
+      "source_name": "Bluetooth SIG Assigned Numbers",
+      "source_url": "https://www.bluetooth.com/specifications/assigned-numbers/",
+      "source_type": "STANDARDS_ORGANIZATION",
+      "source_version_or_date": "2026-01-15",
+      "is_system_or_vendor": false,
+      "analyst_notes": "Standard mandatory GATT service (16-bit 0x1800) defining device name, appearance, and peripheral privacy flags."
+    },
+    {
+      "normalized_uuid": "00001801-0000-1000-8000-00805f9b34fb",
+      "name": "Generic Attribute Service",
+      "category": "bluetooth_sig_service",
+      "source_name": "Bluetooth SIG Assigned Numbers",
+      "source_url": "https://www.bluetooth.com/specifications/assigned-numbers/",
+      "source_type": "STANDARDS_ORGANIZATION",
+      "source_version_or_date": "2026-01-15",
+      "is_system_or_vendor": false,
+      "analyst_notes": "Standard GATT service (16-bit 0x1801) containing the Service Changed characteristic."
+    },
+    {
+      "normalized_uuid": "0000180a-0000-1000-8000-00805f9b34fb",
+      "name": "Device Information Service",
+      "category": "bluetooth_sig_service",
+      "source_name": "Bluetooth SIG Assigned Numbers",
+      "source_url": "https://www.bluetooth.com/specifications/assigned-numbers/",
+      "source_type": "STANDARDS_ORGANIZATION",
+      "source_version_or_date": "2026-01-15",
+      "is_system_or_vendor": false,
+      "analyst_notes": "Standard GATT service (16-bit 0x180A) exposing manufacturer name, model number, serial number, and firmware revisions."
+    },
+    {
+      "normalized_uuid": "0000180d-0000-1000-8000-00805f9b34fb",
+      "name": "Heart Rate Service",
+      "category": "bluetooth_sig_service",
+      "source_name": "Bluetooth SIG Assigned Numbers",
+      "source_url": "https://www.bluetooth.com/specifications/assigned-numbers/",
+      "source_type": "STANDARDS_ORGANIZATION",
+      "source_version_or_date": "2026-01-15",
+      "is_system_or_vendor": false,
+      "analyst_notes": "Standard GATT Heart Rate Service (16-bit 0x180D) widely used by health, fitness wearables, and chest straps."
+    },
+    {
+      "normalized_uuid": "0000180f-0000-1000-8000-00805f9b34fb",
+      "name": "Battery Service",
+      "category": "bluetooth_sig_service",
+      "source_name": "Bluetooth SIG Assigned Numbers",
+      "source_url": "https://www.bluetooth.com/specifications/assigned-numbers/",
+      "source_type": "STANDARDS_ORGANIZATION",
+      "source_version_or_date": "2026-01-15",
+      "is_system_or_vendor": false,
+      "analyst_notes": "Standard GATT Battery Service (16-bit 0x180F) exposing Battery Level characteristic (0x2A19)."
+    },
+    {
+      "normalized_uuid": "00001805-0000-1000-8000-00805f9b34fb",
+      "name": "Current Time Service",
+      "category": "bluetooth_sig_service",
+      "source_name": "Bluetooth SIG Assigned Numbers",
+      "source_url": "https://www.bluetooth.com/specifications/assigned-numbers/",
+      "source_type": "STANDARDS_ORGANIZATION",
+      "source_version_or_date": "2026-01-15",
+      "is_system_or_vendor": false,
+      "analyst_notes": "Standard GATT Current Time Service (16-bit 0x1805) for time synchronization between devices."
+    },
+    {
+      "normalized_uuid": "00001812-0000-1000-8000-00805f9b34fb",
+      "name": "Human Interface Device Service",
+      "category": "bluetooth_sig_service",
+      "source_name": "Bluetooth SIG Assigned Numbers",
+      "source_url": "https://www.bluetooth.com/specifications/assigned-numbers/",
+      "source_type": "STANDARDS_ORGANIZATION",
+      "source_version_or_date": "2026-01-15",
+      "is_system_or_vendor": false,
+      "analyst_notes": "Standard HID over GATT Profile (HOGP) service (16-bit 0x1812) for keyboards, mice, and gamepads."
+    },
+    {
+      "normalized_uuid": "00001819-0000-1000-8000-00805f9b34fb",
+      "name": "Location and Navigation Service",
+      "category": "bluetooth_sig_service",
+      "source_name": "Bluetooth SIG Assigned Numbers",
+      "source_url": "https://www.bluetooth.com/specifications/assigned-numbers/",
+      "source_type": "STANDARDS_ORGANIZATION",
+      "source_version_or_date": "2026-01-15",
+      "is_system_or_vendor": false,
+      "analyst_notes": "Standard GATT Location and Navigation Service (16-bit 0x1819) used in GPS and outdoor positioning sensors."
+    },
+    {
+      "normalized_uuid": "0000181a-0000-1000-8000-00805f9b34fb",
+      "name": "Environmental Sensing Service",
+      "category": "bluetooth_sig_service",
+      "source_name": "Bluetooth SIG Assigned Numbers",
+      "source_url": "https://www.bluetooth.com/specifications/assigned-numbers/",
+      "source_type": "STANDARDS_ORGANIZATION",
+      "source_version_or_date": "2026-01-15",
+      "is_system_or_vendor": false,
+      "analyst_notes": "Standard GATT Environmental Sensing Service (16-bit 0x181A) for temperature, humidity, and barometric pressure sensors."
+    },
+    {
+      "normalized_uuid": "00001820-0000-1000-8000-00805f9b34fb",
+      "name": "Internet Protocol Support Service",
+      "category": "bluetooth_sig_service",
+      "source_name": "Bluetooth SIG Assigned Numbers",
+      "source_url": "https://www.bluetooth.com/specifications/assigned-numbers/",
+      "source_type": "STANDARDS_ORGANIZATION",
+      "source_version_or_date": "2026-01-15",
+      "is_system_or_vendor": false,
+      "analyst_notes": "Standard GATT IPSP service (16-bit 0x1820) enabling IPv6 over BLE (6LoWPAN)."
+    },
+    {
+      "normalized_uuid": "00002a00-0000-1000-8000-00805f9b34fb",
+      "name": "Device Name Characteristic",
+      "category": "bluetooth_sig_characteristic",
+      "source_name": "Bluetooth SIG Assigned Numbers",
+      "source_url": "https://www.bluetooth.com/specifications/assigned-numbers/",
+      "source_type": "STANDARDS_ORGANIZATION",
+      "source_version_or_date": "2026-01-15",
+      "is_system_or_vendor": false,
+      "analyst_notes": "Standard GATT characteristic (16-bit 0x2A00) within Generic Access containing UTF-8 device name."
+    },
+    {
+      "normalized_uuid": "00002a19-0000-1000-8000-00805f9b34fb",
+      "name": "Battery Level Characteristic",
+      "category": "bluetooth_sig_characteristic",
+      "source_name": "Bluetooth SIG Assigned Numbers",
+      "source_url": "https://www.bluetooth.com/specifications/assigned-numbers/",
+      "source_type": "STANDARDS_ORGANIZATION",
+      "source_version_or_date": "2026-01-15",
+      "is_system_or_vendor": false,
+      "analyst_notes": "Standard GATT characteristic (16-bit 0x2A19) reporting battery charge percentage (0-100)."
+    },
+    {
+      "normalized_uuid": "00002a37-0000-1000-8000-00805f9b34fb",
+      "name": "Heart Rate Measurement Characteristic",
+      "category": "bluetooth_sig_characteristic",
+      "source_name": "Bluetooth SIG Assigned Numbers",
+      "source_url": "https://www.bluetooth.com/specifications/assigned-numbers/",
+      "source_type": "STANDARDS_ORGANIZATION",
+      "source_version_or_date": "2026-01-15",
+      "is_system_or_vendor": false,
+      "analyst_notes": "Standard GATT characteristic (16-bit 0x2A37) transmitting heart rate measurement data and RR-intervals."
+    },
+    {
+      "normalized_uuid": "00002a38-0000-1000-8000-00805f9b34fb",
+      "name": "Body Sensor Location Characteristic",
+      "category": "bluetooth_sig_characteristic",
+      "source_name": "Bluetooth SIG Assigned Numbers",
+      "source_url": "https://www.bluetooth.com/specifications/assigned-numbers/",
+      "source_type": "STANDARDS_ORGANIZATION",
+      "source_version_or_date": "2026-01-15",
+      "is_system_or_vendor": false,
+      "analyst_notes": "Standard GATT characteristic (16-bit 0x2A38) indicating anatomical sensor location."
+    },
+    {
+      "normalized_uuid": "00002902-0000-1000-8000-00805f9b34fb",
+      "name": "Client Characteristic Configuration Descriptor",
+      "category": "bluetooth_sig_descriptor",
+      "source_name": "Bluetooth SIG Assigned Numbers",
+      "source_url": "https://www.bluetooth.com/specifications/assigned-numbers/",
+      "source_type": "STANDARDS_ORGANIZATION",
+      "source_version_or_date": "2026-01-15",
+      "is_system_or_vendor": false,
+      "analyst_notes": "Standard GATT descriptor (16-bit 0x2902, CCCD) enabling client notifications (0x0001) and indications (0x0002)."
+    },
+    {
+      "normalized_uuid": "00001101-0000-1000-8000-00805f9b34fb",
+      "name": "Serial Port Profile (SPP) Service Class",
+      "category": "bluetooth_sig_service",
+      "source_name": "Bluetooth SIG Assigned Numbers",
+      "source_url": "https://www.bluetooth.com/specifications/assigned-numbers/",
+      "source_type": "STANDARDS_ORGANIZATION",
+      "source_version_or_date": "2026-01-15",
+      "is_system_or_vendor": false,
+      "analyst_notes": "Standard Bluetooth Classic Serial Port Profile (SPP, 16-bit 0x1101) UUID used for RFCOMM sockets."
+    },
+    {
+      "normalized_uuid": "0000fe2c-0000-1000-8000-00805f9b34fb",
+      "name": "Google Fast Pair Service",
+      "category": "system_service",
+      "source_name": "Google Nearby / Fast Pair Specification",
+      "source_url": "https://developers.google.com/nearby/fast-pair/spec",
+      "source_type": "OS_VENDOR",
+      "source_version_or_date": "2025-11-01",
+      "is_system_or_vendor": true,
+      "analyst_notes": "Google-assigned 16-bit UUID (0xFE2C) registered with Bluetooth SIG for Google Fast Pair Service discovery on Android."
+    },
+    {
+      "normalized_uuid": "0000fd6f-0000-1000-8000-00805f9b34fb",
+      "name": "Exposure Notification Service",
+      "category": "system_service",
+      "source_name": "Apple / Google Exposure Notification Bluetooth Specification",
+      "source_url": "https://developer.apple.com/documentation/exposurenotification",
+      "source_type": "OS_VENDOR",
+      "source_version_or_date": "v1.2",
+      "is_system_or_vendor": true,
+      "analyst_notes": "Joint Apple-Google 16-bit UUID (0xFD6F) reserved for COVID-19 contact tracing and exposure notification broadcasting."
+    },
+    {
+      "normalized_uuid": "fa87c0d0-afac-11de-8a39-0800200c9a66",
+      "name": "AOSP BluetoothChat Insecure Socket UUID",
+      "category": "system_service",
+      "source_name": "Android Open Source Project (AOSP)",
+      "source_url": "https://android.googlesource.com/platform/development/+/master/samples/BluetoothChat",
+      "source_type": "OS_VENDOR",
+      "source_version_or_date": "AOSP Android 14",
+      "is_system_or_vendor": true,
+      "analyst_notes": "Canonical sample UUID embedded in official AOSP BluetoothChat sample app for insecure RFCOMM connection testing."
+    },
+    {
+      "normalized_uuid": "8ce255c0-200a-11e0-ac64-0800200c9a66",
+      "name": "AOSP BluetoothChat Secure Socket UUID",
+      "category": "system_service",
+      "source_name": "Android Open Source Project (AOSP)",
+      "source_url": "https://android.googlesource.com/platform/development/+/master/samples/BluetoothChat",
+      "source_type": "OS_VENDOR",
+      "source_version_or_date": "AOSP Android 14",
+      "is_system_or_vendor": true,
+      "analyst_notes": "Canonical sample UUID embedded in official AOSP BluetoothChat sample app for secure encrypted RFCOMM connection testing."
+    },
+    {
+      "normalized_uuid": "6e400001-b5a3-f393-e0a9-e50e24dcca9e",
+      "name": "Nordic UART Service (NUS)",
+      "category": "vendor_service",
+      "source_name": "Nordic Semiconductor nRF5 SDK Specification",
+      "source_url": "https://infocenter.nordicsemi.com/topic/sdk_nrf5_v17.1.0/ble_sdk_app_nus_eval.html",
+      "source_type": "HARDWARE_VENDOR",
+      "source_version_or_date": "SDK v17.1.0",
+      "is_system_or_vendor": true,
+      "analyst_notes": "Proprietary but widely adopted vendor GATT service defined by Nordic Semiconductor for serial bidirectional UART emulation over BLE."
+    },
+    {
+      "normalized_uuid": "7905f431-b5ce-4e99-a40f-4b1e122d00d0",
+      "name": "Apple Notification Center Service (ANCS)",
+      "category": "vendor_service",
+      "source_name": "Apple Accessory Design Guidelines",
+      "source_url": "https://developer.apple.com/bluetooth/",
+      "source_type": "HARDWARE_VENDOR",
+      "source_version_or_date": "Release R20",
+      "is_system_or_vendor": true,
+      "analyst_notes": "Apple proprietary GATT service allowing Bluetooth accessories to access notification alerts on iOS devices."
+    },
+    {
+      "normalized_uuid": "89d94627-dd35-495f-97b5-2773ebe92897",
+      "name": "Apple Media Service (AMS)",
+      "category": "vendor_service",
+      "source_name": "Apple Accessory Design Guidelines",
+      "source_url": "https://developer.apple.com/bluetooth/",
+      "source_type": "HARDWARE_VENDOR",
+      "source_version_or_date": "Release R20",
+      "is_system_or_vendor": true,
+      "analyst_notes": "Apple proprietary GATT service enabling BLE accessories to control media playback on iOS devices."
+    },
+    {
+      "normalized_uuid": "f000aa00-0451-4000-b000-000000000000",
+      "name": "TI SensorTag IR Temperature Service",
+      "category": "vendor_service",
+      "source_name": "Texas Instruments SensorTag User Guide",
+      "source_url": "https://processors.wiki.ti.com/index.php/SensorTag_User_Guide",
+      "source_type": "HARDWARE_VENDOR",
+      "source_version_or_date": "CC2650 SensorTag Guide",
+      "is_system_or_vendor": true,
+      "analyst_notes": "Texas Instruments vendor GATT service for contactless infrared temperature telemetry."
+    }
+  ]
+}

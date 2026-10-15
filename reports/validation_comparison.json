@@ -1,0 +1,345 @@
+{
+  "target": "/app/samples/validation.apk",
+  "timestamp": "2026-10-04T14:22:04.762733+00:00",
+  "verdict": "PASS",
+  "total_comparisons": 17,
+  "matches": 16,
+  "mismatches": 0,
+  "not_verifiable": 1,
+  "comparisons": [
+    {
+      "field": "sha256",
+      "ucsd": "83d3fe522281c3cb89fce3bc05038f81b3c3b32c108536941f184c5f9bb53778",
+      "independent": "83d3fe522281c3cb89fce3bc05038f81b3c3b32c108536941f184c5f9bb53778",
+      "status": "MATCH",
+      "explanation": "File SHA-256 checksum: both sources independently report exact match '83d3fe522281c3cb89fce3bc05038f81b3c3b32c108536941f184c5f9bb53778'."
+    },
+    {
+      "field": "file_size_bytes",
+      "ucsd": 12537183,
+      "independent": 12537183,
+      "status": "MATCH",
+      "explanation": "Total file size in bytes: both sources independently report exact match '12537183'."
+    },
+    {
+      "field": "is_valid_zip",
+      "ucsd": true,
+      "independent": true,
+      "status": "MATCH",
+      "explanation": "ZIP CRC32 archive integrity: both sources independently report exact match 'True'."
+    },
+    {
+      "field": "package_name",
+      "ucsd": "org.fdroid.fdroid",
+      "independent": "org.fdroid.fdroid",
+      "status": "MATCH",
+      "explanation": "Android application package identifier: both sources independently report exact match 'org.fdroid.fdroid'."
+    },
+    {
+      "field": "version_code",
+      "ucsd": 2000051,
+      "independent": 2000051,
+      "status": "MATCH",
+      "explanation": "Internal integer version code: both sources independently report exact match '2000051'."
+    },
+    {
+      "field": "version_name",
+      "ucsd": "2.0.1",
+      "independent": "2.0.1",
+      "status": "MATCH",
+      "explanation": "Display version string: both sources independently report exact match '2.0.1'."
+    },
+    {
+      "field": "min_sdk_version",
+      "ucsd": 24,
+      "independent": 24,
+      "status": "MATCH",
+      "explanation": "Minimum supported Android API level: both sources independently report exact match '24'."
+    },
+    {
+      "field": "target_sdk_version",
+      "ucsd": 37,
+      "independent": 37,
+      "status": "MATCH",
+      "explanation": "Target Android API level: both sources independently report exact match '37'."
+    },
+    {
+      "field": "compile_sdk_version",
+      "ucsd": null,
+      "independent": 37,
+      "status": "NOT_VERIFIABLE",
+      "explanation": "UCSD Phase 1 schema does not extract compileSdkVersion; independent aapt tool reports compileSdkVersion='37'."
+    },
+    {
+      "field": "requested_permissions_count",
+      "ucsd": 30,
+      "independent": 30,
+      "status": "MATCH",
+      "explanation": "Count of standard <uses-permission> items: both sources independently report exact match '30'."
+    },
+    {
+      "field": "requested_permissions",
+      "ucsd": [
+        "android.permission.ACCESS_LOCAL_NETWORK",
+        "android.permission.ACCESS_NETWORK_STATE",
+        "android.permission.ACCESS_WIFI_STATE",
+        "android.permission.BLUETOOTH",
+        "android.permission.BLUETOOTH_ADMIN",
+        "android.permission.BLUETOOTH_ADVERTISE",
+        "android.permission.BLUETOOTH_CONNECT",
+        "android.permission.BLUETOOTH_SCAN",
+        "android.permission.CAMERA",
+        "android.permission.CHANGE_NETWORK_STATE",
+        "android.permission.CHANGE_WIFI_MULTICAST_STATE",
+        "android.permission.CHANGE_WIFI_STATE",
+        "android.permission.ENFORCE_UPDATE_OWNERSHIP",
+        "android.permission.FOREGROUND_SERVICE",
+        "android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE",
+        "android.permission.FOREGROUND_SERVICE_DATA_SYNC",
+        "android.permission.INTERNET",
+        "android.permission.MANAGE_EXTERNAL_STORAGE",
+        "android.permission.POST_NOTIFICATIONS",
+        "android.permission.QUERY_ALL_PACKAGES",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.RECEIVE_BOOT_COMPLETED",
+        "android.permission.REQUEST_DELETE_PACKAGES",
+        "android.permission.REQUEST_INSTALL_PACKAGES",
+        "android.permission.UPDATE_PACKAGES_WITHOUT_USER_ACTION",
+        "android.permission.WAKE_LOCK",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.WRITE_SETTINGS",
+        "org.fdroid.fdroid.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION",
+        "org.fdroid.fdroid.permission.UPDATE_REPOS"
+      ],
+      "independent": [
+        "android.permission.ACCESS_LOCAL_NETWORK",
+        "android.permission.ACCESS_NETWORK_STATE",
+        "android.permission.ACCESS_WIFI_STATE",
+        "android.permission.BLUETOOTH",
+        "android.permission.BLUETOOTH_ADMIN",
+        "android.permission.BLUETOOTH_ADVERTISE",
+        "android.permission.BLUETOOTH_CONNECT",
+        "android.permission.BLUETOOTH_SCAN",
+        "android.permission.CAMERA",
+        "android.permission.CHANGE_NETWORK_STATE",
+        "android.permission.CHANGE_WIFI_MULTICAST_STATE",
+        "android.permission.CHANGE_WIFI_STATE",
+        "android.permission.ENFORCE_UPDATE_OWNERSHIP",
+        "android.permission.FOREGROUND_SERVICE",
+        "android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE",
+        "android.permission.FOREGROUND_SERVICE_DATA_SYNC",
+        "android.permission.INTERNET",
+        "android.permission.MANAGE_EXTERNAL_STORAGE",
+        "android.permission.POST_NOTIFICATIONS",
+        "android.permission.QUERY_ALL_PACKAGES",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.RECEIVE_BOOT_COMPLETED",
+        "android.permission.REQUEST_DELETE_PACKAGES",
+        "android.permission.REQUEST_INSTALL_PACKAGES",
+        "android.permission.UPDATE_PACKAGES_WITHOUT_USER_ACTION",
+        "android.permission.WAKE_LOCK",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.WRITE_SETTINGS",
+        "org.fdroid.fdroid.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION",
+        "org.fdroid.fdroid.permission.UPDATE_REPOS"
+      ],
+      "status": "MATCH",
+      "explanation": "Exact set match for all 30 standard <uses-permission> entries. Note: aapt also identified conditional permission tag(s) <uses-permission-sdk-23>: ['android.permission.ACCESS_COARSE_LOCATION']."
+    },
+    {
+      "field": "declared_permissions_count",
+      "ucsd": 2,
+      "independent": 2,
+      "status": "MATCH",
+      "explanation": "Count of custom declared <permission> definitions: both sources independently report exact match '2'."
+    },
+    {
+      "field": "declared_permissions",
+      "ucsd": [
+        "org.fdroid.fdroid.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION",
+        "org.fdroid.fdroid.permission.UPDATE_REPOS"
+      ],
+      "independent": [
+        "org.fdroid.fdroid.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION",
+        "org.fdroid.fdroid.permission.UPDATE_REPOS"
+      ],
+      "status": "MATCH",
+      "explanation": "Exact match on custom declared permissions: ['org.fdroid.fdroid.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION', 'org.fdroid.fdroid.permission.UPDATE_REPOS']."
+    },
+    {
+      "field": "dex_count",
+      "ucsd": 3,
+      "independent": 3,
+      "status": "MATCH",
+      "explanation": "Count of classes*.dex archive entries: both sources independently report exact match '3'."
+    },
+    {
+      "field": "is_multidex",
+      "ucsd": true,
+      "independent": true,
+      "status": "MATCH",
+      "explanation": "Multi-DEX indicator (dex_count > 1): both sources independently report exact match 'True'."
+    },
+    {
+      "field": "dex_names",
+      "ucsd": [
+        "classes.dex",
+        "classes2.dex",
+        "classes3.dex"
+      ],
+      "independent": [
+        "classes.dex",
+        "classes2.dex",
+        "classes3.dex"
+      ],
+      "status": "MATCH",
+      "explanation": "Exact match for DEX members: ['classes.dex', 'classes2.dex', 'classes3.dex']."
+    },
+    {
+      "field": "dex_checksums_and_sizes",
+      "ucsd": {
+        "classes.dex": {
+          "size": 9295512,
+          "sha256": "4cafa3b5bb47..."
+        },
+        "classes2.dex": {
+          "size": 9622304,
+          "sha256": "68cf25128f1f..."
+        },
+        "classes3.dex": {
+          "size": 1661772,
+          "sha256": "b0731845fa5d..."
+        }
+      },
+      "independent": {
+        "classes.dex": {
+          "size": 9295512,
+          "sha256": "4cafa3b5bb47..."
+        },
+        "classes2.dex": {
+          "size": 9622304,
+          "sha256": "68cf25128f1f..."
+        },
+        "classes3.dex": {
+          "size": 1661772,
+          "sha256": "b0731845fa5d..."
+        }
+      },
+      "status": "MATCH",
+      "explanation": "All individual DEX members have identical uncompressed byte sizes and SHA-256 checksums."
+    }
+  ],
+  "independent_metadata": {
+    "file_path": "/app/samples/validation.apk",
+    "file_name": "validation.apk",
+    "file_size_bytes": 12537183,
+    "sha256": "83d3fe522281c3cb89fce3bc05038f81b3c3b32c108536941f184c5f9bb53778",
+    "is_valid_zip": true,
+    "has_manifest": true,
+    "has_dex": true,
+    "is_multidex": true,
+    "dex_count": 3,
+    "dex_files": [
+      {
+        "name": "classes.dex",
+        "sha256": "4cafa3b5bb47b0065ba8311285193d5aff7cdf0e9a388c108ed44d58e1ad47d8",
+        "size_bytes": 9295512
+      },
+      {
+        "name": "classes2.dex",
+        "sha256": "68cf25128f1fb190db2ab4fdfda3f3f07045a4a6e757a2388c16eaf95b8b186e",
+        "size_bytes": 9622304
+      },
+      {
+        "name": "classes3.dex",
+        "sha256": "b0731845fa5d685e306b73b04d728f63e1f08de226a247032669408afc386ff5",
+        "size_bytes": 1661772
+      }
+    ],
+    "package_name": "org.fdroid.fdroid",
+    "version_code": 2000051,
+    "version_name": "2.0.1",
+    "min_sdk_version": 24,
+    "target_sdk_version": 37,
+    "compile_sdk_version": 37,
+    "uses_permissions": [
+      "android.permission.ACCESS_LOCAL_NETWORK",
+      "android.permission.ACCESS_NETWORK_STATE",
+      "android.permission.ACCESS_WIFI_STATE",
+      "android.permission.BLUETOOTH",
+      "android.permission.BLUETOOTH_ADMIN",
+      "android.permission.BLUETOOTH_ADVERTISE",
+      "android.permission.BLUETOOTH_CONNECT",
+      "android.permission.BLUETOOTH_SCAN",
+      "android.permission.CAMERA",
+      "android.permission.CHANGE_NETWORK_STATE",
+      "android.permission.CHANGE_WIFI_MULTICAST_STATE",
+      "android.permission.CHANGE_WIFI_STATE",
+      "android.permission.ENFORCE_UPDATE_OWNERSHIP",
+      "android.permission.FOREGROUND_SERVICE",
+      "android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE",
+      "android.permission.FOREGROUND_SERVICE_DATA_SYNC",
+      "android.permission.INTERNET",
+      "android.permission.MANAGE_EXTERNAL_STORAGE",
+      "android.permission.POST_NOTIFICATIONS",
+      "android.permission.QUERY_ALL_PACKAGES",
+      "android.permission.READ_EXTERNAL_STORAGE",
+      "android.permission.RECEIVE_BOOT_COMPLETED",
+      "android.permission.REQUEST_DELETE_PACKAGES",
+      "android.permission.REQUEST_INSTALL_PACKAGES",
+      "android.permission.UPDATE_PACKAGES_WITHOUT_USER_ACTION",
+      "android.permission.WAKE_LOCK",
+      "android.permission.WRITE_EXTERNAL_STORAGE",
+      "android.permission.WRITE_SETTINGS",
+      "org.fdroid.fdroid.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION",
+      "org.fdroid.fdroid.permission.UPDATE_REPOS"
+    ],
+    "uses_permissions_sdk_23": [
+      "android.permission.ACCESS_COARSE_LOCATION"
+    ],
+    "requested_permissions": [
+      "android.permission.ACCESS_COARSE_LOCATION",
+      "android.permission.ACCESS_LOCAL_NETWORK",
+      "android.permission.ACCESS_NETWORK_STATE",
+      "android.permission.ACCESS_WIFI_STATE",
+      "android.permission.BLUETOOTH",
+      "android.permission.BLUETOOTH_ADMIN",
+      "android.permission.BLUETOOTH_ADVERTISE",
+      "android.permission.BLUETOOTH_CONNECT",
+      "android.permission.BLUETOOTH_SCAN",
+      "android.permission.CAMERA",
+      "android.permission.CHANGE_NETWORK_STATE",
+      "android.permission.CHANGE_WIFI_MULTICAST_STATE",
+      "android.permission.CHANGE_WIFI_STATE",
+      "android.permission.ENFORCE_UPDATE_OWNERSHIP",
+      "android.permission.FOREGROUND_SERVICE",
+      "android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE",
+      "android.permission.FOREGROUND_SERVICE_DATA_SYNC",
+      "android.permission.INTERNET",
+      "android.permission.MANAGE_EXTERNAL_STORAGE",
+      "android.permission.POST_NOTIFICATIONS",
+      "android.permission.QUERY_ALL_PACKAGES",
+      "android.permission.READ_EXTERNAL_STORAGE",
+      "android.permission.RECEIVE_BOOT_COMPLETED",
+      "android.permission.REQUEST_DELETE_PACKAGES",
+      "android.permission.REQUEST_INSTALL_PACKAGES",
+      "android.permission.UPDATE_PACKAGES_WITHOUT_USER_ACTION",
+      "android.permission.WAKE_LOCK",
+      "android.permission.WRITE_EXTERNAL_STORAGE",
+      "android.permission.WRITE_SETTINGS",
+      "org.fdroid.fdroid.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION",
+      "org.fdroid.fdroid.permission.UPDATE_REPOS"
+    ],
+    "requested_permissions_count": 31,
+    "declared_permissions": [
+      "org.fdroid.fdroid.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION",
+      "org.fdroid.fdroid.permission.UPDATE_REPOS"
+    ],
+    "declared_permissions_count": 2,
+    "tool_metadata": {
+      "aapt_tool": "Android Asset Packaging Tool, v0.2-debian",
+      "zip_checker": "python-zipfile-crc32",
+      "hash_algorithm": "python-hashlib-sha256"
+    }
+  }
+}

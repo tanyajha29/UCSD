@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ucsd"
+version = "0.1.0"
+description = "UUID Confusion Static Detection - APK Intake & Static Analysis Engine"
+authors = [{ name = "UCSD Research Team" }]
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "androguard==4.1.4",
+    "pydantic==2.13.5",
+    "fastapi==0.115.6",
+    "uvicorn==0.34.0",
+    "python-multipart==0.0.20",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==9.1.1",
+    "httpx==0.28.1",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]

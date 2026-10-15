@@ -1,0 +1,67 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+build/
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
+# Node & Frontend
+node_modules/
+frontend/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Databases and runtime data
+data/db/*.db
+data/db/*.db-wal
+data/db/*.db-shm
+data/db/*.db-journal
+
+# Staged uploads
+workspace/uploads/*
+!workspace/uploads/.gitkeep
+
+# Generated reports during testing/runtime
+reports/*
+!reports/.gitkeep
+!reports/demo_batch/
+!reports/disassembly_inspection.md
+!reports/validation_comparison.json
+!reports/validation_comparison.md
+
+# OS & Editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+*.log
